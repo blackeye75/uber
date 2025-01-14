@@ -33,7 +33,7 @@ const captianSchema = new mongoose.Schema({
         enum: ['active', 'inactive'],
         default: 'inactive'
     },
-    vehicles: {
+    vehicle: {
         color: {
             type: String,
             rerquired: true,
