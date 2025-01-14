@@ -15,7 +15,7 @@ router.post('/login',[body('email').isEmail().withMessage("Invalid Email"),
 
 router.get('/profile', authMiddleware.authUser,userController.getUserProfile);
 
-router.get('/profile',authMiddleware.authUser,userController.logoutUser);
+router.get('/logout',authMiddleware.authUser,userController.logoutUser);
 
 
 

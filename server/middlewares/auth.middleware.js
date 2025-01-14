@@ -3,8 +3,15 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 module.exports.authUser = async (req, res, next) => {
-    const token = req.cookies.token || req.headers.authorization.split(" ")[1];
+    const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
     if (!token) return res.status(401).json({ message: "Unauthorized by authUser middleware" });
+
+    const isBlacklistToken = await userModel.findOne({ blacklistedTokens: token })
+
+    if (isBlacklistToken) {
+        return res.status(401).json({ message: "Unauthoriza access by isblacklisted" });
+    }
+
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
