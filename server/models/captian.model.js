@@ -72,9 +72,9 @@ captianSchema.methods.generateAuthToken = function () {
 captianSchema.methods.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 }
-captianSchema.statics.hashPassword = async function () {
+captianSchema.statics.hashPassword = async function (password) {
     return await bcrypt.hash(password, 10)
 }
-const captionModel = new mongoose.models('caption', captianSchema);
+const captionModel = new mongoose.model('caption', captianSchema);
 
 module.exports= captionModel;

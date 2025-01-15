@@ -2,6 +2,7 @@ const express = require('express')
 
 const router= express.Router();
 
+const captainController= require('../controllers/captian.controller')
 const {body}= require('express-validator')
 
 router.post('/register', [

@@ -11,7 +11,7 @@ module.exports.registerCaptain = async (req, res, next) => {
     const { fullname, email, password, vehicle } = req.body;
 
     const isCaptianAlredyExits = await captianModel.findOne({ email })
-    if (!isCaptianAlredyExits) {
+    if (isCaptianAlredyExits) {
         return res.status(400).json({ message: "Captian already exits" })
     }
     const hashPassword = await captianModel.hashPassword(password);
@@ -19,11 +19,13 @@ module.exports.registerCaptain = async (req, res, next) => {
         firstname: fullname.firstname,
         lastname: fullname.lastname,
         password: hashPassword,
+        email,
         color: vehicle.color,
         plate: vehicle.plate,
         capacity: vehicle.capacity,
         vehicleType: vehicle.vehicleType
-
-
     })
+
+    const token = captian.generateAuthToken();
+    res.status(201).json({ token, captian });
 }
