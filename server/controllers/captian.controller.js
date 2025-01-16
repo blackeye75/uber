@@ -29,3 +29,25 @@ module.exports.registerCaptain = async (req, res, next) => {
     const token = captian.generateAuthToken();
     res.status(201).json({ token, captian });
 }
+
+module.exports.loginCaptain = async (req, res, next) => {
+    const errors = validationResult(res);
+    if (!errors.isEmpty()) {
+        return res.status(401).json({ errors: errors.array() })
+    }
+
+    const { email, password } = req.body;
+    const captian = await captianModel.findOne({ email });
+    if (!captian) {
+        return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+    const isMatch = await captian.comparePassword(password);
+    if (!isMatch) {
+        return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    const token = captian.generateAuthToken();
+    res.cookie('token', token);
+    res.status(200).json({ token, captian });
+}
