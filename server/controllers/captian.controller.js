@@ -37,7 +37,7 @@ module.exports.loginCaptain = async (req, res, next) => {
     }
 
     const { email, password } = req.body;
-    const captian = await captianModel.findOne({ email });
+    const captian = await captianModel.findOne({ email }).select("+password");
     if (!captian) {
         return res.status(400).json({ message: "Invalid email or password" });
     }
@@ -50,4 +50,17 @@ module.exports.loginCaptain = async (req, res, next) => {
     const token = captian.generateAuthToken();
     res.cookie('token', token);
     res.status(200).json({ token, captian });
+}
+
+module.exports.getCaptianProfile = async (req, res, next) => {
+    res.status(200).json({ captian: req.captian });
+}
+
+module.exports.logoutCaptian = async (req, res, next) => {
+    const token = req.cookies.token || req.headers.authorization.split;
+
+    await blacklistTokenModel.create({ token });
+
+    res.clearCookie('token');
+    res.status(200).json({ message: "Logged out Successfully" });
 }
