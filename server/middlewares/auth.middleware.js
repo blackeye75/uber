@@ -36,19 +36,24 @@ module.exports.authCaptian=async (req,res,next)=>{
         return res.status(402).json({message:"Unauthorized by authCaptian middleware"})
     }
 
-    const isBlackListed= blacklistTokenModel.findOne({token:token})
+    const isBlackListed=await blacklistTokenModel.findOne({token:token})
+
+    // console.log(isBlackListed);
+    
     if(isBlackListed){
-        return res.status(402).json({message:"Unauthorized by authCaptain middleware"})
+        return res.status(402).json({message:"Unauthorized by authCaptain middleware blacklist token"})
     }
 
     try {
         const decoded = jwt.verify(token,process.env.JWT_SECRET)
-        console.log(decoded);
+        // console.log(decoded);
         
-        const captian= await captionModel.findOne(decoded._id);
+        const captian= await captionModel.findById(decoded._id);
         req.captian=captian;
-        next();
+       return next();
     } catch (error) {
+        console.log(error);
+        
         return res.status(402).json({message:"Unauthorized by authCaptian middleware check"})
     }
 
