@@ -54,7 +54,7 @@ module.exports.authCaptian=async (req,res,next)=>{
     } catch (error) {
         console.log(error);
         
-        return res.status(402).json({message:"Unauthorized by authCaptian middleware check"})
+        return res.status(401).json({message:"Unauthorized by authCaptian middleware check"})
     }
 
     
