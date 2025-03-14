@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const UserSignup = () => {
 
@@ -23,7 +24,27 @@ const UserSignup = () => {
           alt=""
         />
         <form onSubmit={(e) => { submitHandler(e) }} action="">
-          <h3 className="text-lg font-medium mb-2">Email Your Email</h3>
+          <h3 className="text-base font-medium mb-2">Enter Your Full Name</h3>
+          <div className='flex gap-2' >
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border  w-full text-lg  placeholder:text-base"
+              required
+              placeholder="First name"
+            />
+
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border  w-full text-lg  placeholder:text-base"
+              required
+              placeholder="Last name"
+            />
+          </div>
+          <h3 className="text-base font-medium mb-2">Email Your Email</h3>
           <input
             type="email"
             value={email}
@@ -32,7 +53,7 @@ const UserSignup = () => {
             required
             placeholder="email@example.com"
           />
-          <h3 className="text-lg font-medium mb-2">Enter Password</h3>
+          <h3 className="text-base font-medium mb-2">Enter Password</h3>
           <input
             type="password"
             password={password}
@@ -44,8 +65,8 @@ const UserSignup = () => {
           <button className="bg-black text-white font-semibold rounded mb-7 w-full px-4 py-2">
             Login
           </button>
-          <p className=" text-center mb-3 text-black" >New Here?
-            <Link to="/signup" className=" text-blue-500" > Create new Account</Link>
+          <p className=" text-center mb-3 text-black" >Already Regitered?
+            <Link to="/login" className=" text-blue-500" > Login here!</Link>
           </p>
         </form>
       </div>

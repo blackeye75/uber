@@ -23,7 +23,7 @@ const UserLogin = () => {
           alt=""
         />
         <form onSubmit={(e) => { submitHandler(e) }} action="">
-          <h3 className="text-lg font-medium mb-2">Email Your Email</h3>
+          <h3 className="text-base font-medium mb-2">Email Your Email</h3>
           <input
             type="email"
             value={email}
@@ -32,7 +32,7 @@ const UserLogin = () => {
             required
             placeholder="email@example.com"
           />
-          <h3 className="text-lg font-medium mb-2">Enter Password</h3>
+          <h3 className="text-base font-medium mb-2">Enter Password</h3>
           <input
             type="password"
             password={password}
