@@ -35,7 +35,7 @@ const UserLogin = () => {
           <h3 className="text-base font-medium mb-2">Enter Password</h3>
           <input
             type="password"
-            password={password}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="bg-[#eeeeee] rounded px-4 py-2 border  mb-7 w-full text-lg  placeholder:text-base"
             required

@@ -3,18 +3,22 @@ import { Link } from 'react-router-dom'
 
 const UserSignup = () => {
 
+  const [firstname, setFirstname] = useState("")
+  const [lastname, setLastname] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [userData, setuserData] = useState({})
-
+  
+  console.log(userData);
   const submitHandler = (e) => {
     e.preventDefault();
-    setuserData({ email: email, password: password })
-    setEmail('')
+    setuserData({ userName: { firstname, lastname }, email: email, password: password })
+    setFirstname('')
+    setLastname('')
     setPassword('')
-    console.log(userData);
+    setEmail('')
   }
-
+  
   return (
     <div className="p-4 pt-16 h-screen  flex flex-col justify-between">
       <div>
@@ -28,8 +32,8 @@ const UserSignup = () => {
           <div className='flex gap-2' >
             <input
               type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
               className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border  w-full text-lg  placeholder:text-base"
               required
               placeholder="First name"
@@ -37,8 +41,8 @@ const UserSignup = () => {
 
             <input
               type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
               className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border  w-full text-lg  placeholder:text-base"
               required
               placeholder="Last name"
@@ -56,24 +60,23 @@ const UserSignup = () => {
           <h3 className="text-base font-medium mb-2">Enter Password</h3>
           <input
             type="password"
-            password={password}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="bg-[#eeeeee] rounded px-4 py-2 border  mb-7 w-full text-lg  placeholder:text-base"
             required
             placeholder="password"
           />
           <button className="bg-black text-white font-semibold rounded mb-7 w-full px-4 py-2">
-            Login
+            Create Account
           </button>
-          <p className=" text-center mb-3 text-black" >Already Regitered?
-            <Link to="/login" className=" text-blue-500" > Login here!</Link>
-          </p>
         </form>
+        <p className=" text-center mb-3 text-black" >Already Regitered?
+          <Link to="/login" className=" text-blue-500" > Login here!</Link>
+        </p>
       </div>
       <div>
-        <Link to="/captian-login" className="bg-[#10b461] flex items-center justify-center text-white font-semibold mb-5 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base">
-          Sign in as Captian
-        </Link>
+        <p className='text-xs leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
+          Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
       </div>
     </div>
   )
