@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const CaptianSignup = () => {
 
@@ -16,9 +17,9 @@ const CaptianSignup = () => {
   const submitHandler = async (e) => {
     e.preventDefault()
     const captainData = {
-      fullname: {
-        firstname: firstName,
-        lastname: lastName
+      fullName: {
+        firstName: firstName,
+        lastName: lastName
       },
       email: email,
       password: password,
@@ -37,7 +38,7 @@ const CaptianSignup = () => {
       <div>
         <img
           className="w-20  mb-4"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Uber_logo_2018.png/1200px-Uber_logo_2018.png"
+          src="https://pngimg.com/uploads/uber/uber_PNG24.png"
           alt=""
         />
         <form onSubmit={(e) => { submitHandler(e) }} action="">
@@ -45,20 +46,20 @@ const CaptianSignup = () => {
           <div className='flex gap-2' >
             <input
               type="text"
-              value={firstname}
-              onChange={(e) => setFirstname(e.target.value)}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border  w-full text-lg  placeholder:text-base"
               required
-              placeholder="First name"
+              placeholder="First Name"
             />
 
             <input
               type="text"
-              value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border  w-full text-lg  placeholder:text-base"
               required
-              placeholder="Last name"
+              placeholder="Last Name"
             />
           </div>
           <h3 className="text-base font-medium mb-2">Email Your Email</h3>

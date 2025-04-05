@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom'
 
 const UserSignup = () => {
 
-  const [firstname, setFirstname] = useState("")
-  const [lastname, setLastname] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [userData, setuserData] = useState({})
   
-  console.log(userData);
   const submitHandler = (e) => {
     e.preventDefault();
-    setuserData({ userName: { firstname, lastname }, email: email, password: password })
-    setFirstname('')
-    setLastname('')
+    setuserData({ userName: { firstName, lastName }, email: email, password: password })
+    setFirstName('')
+    setLastName('')
     setPassword('')
     setEmail('')
+    console.log(userData);
   }
   
   return (
@@ -32,20 +32,20 @@ const UserSignup = () => {
           <div className='flex gap-2' >
             <input
               type="text"
-              value={firstname}
-              onChange={(e) => setFirstname(e.target.value)}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border  w-full text-lg  placeholder:text-base"
               required
-              placeholder="First name"
+              placeholder="First Name"
             />
 
             <input
               type="text"
-              value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border  w-full text-lg  placeholder:text-base"
               required
-              placeholder="Last name"
+              placeholder="Last Name"
             />
           </div>
           <h3 className="text-base font-medium mb-2">Email Your Email</h3>
