@@ -85,7 +85,7 @@ const CaptianSignup = () => {
           </button>
         </form>
         <p className=" text-center mb-3 text-black" >Already Regitered?
-          <Link to="/login" className=" text-blue-500" > Login here!</Link>
+          <Link to="/captian-login" className=" text-blue-500" > Login here!</Link>
         </p>
       </div>
       <div>

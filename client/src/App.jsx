@@ -5,18 +5,23 @@ import UserLogin from './pages/UserLogin'
 import UserSignup from './pages/UserSignup'
 import CaptianSignup from './pages/CaptianSignup'
 import CaptianLogin from './pages/CaptianLogin'
+import { useContext } from 'react'
+import UserContext, { UserContextData } from './context/UserContext'
+import Start from './pages/Start'
 
 function App() {
 
-
+const ans = useContext(UserContextData)
+// console.log(ans);
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Start />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/captian-login" element={<CaptianLogin />} />
         <Route path="/captian-signup" element={<CaptianSignup />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </div>
   )
