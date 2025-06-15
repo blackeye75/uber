@@ -8,11 +8,13 @@ import CaptianLogin from './pages/CaptianLogin'
 import { useContext } from 'react'
 import UserContext, { UserContextData } from './context/UserContext'
 import Start from './pages/Start'
+import UserProtectedWraper from './pages/UserProtectedWraper'
+import UserLogut from './pages/UserLogut'
 
 function App() {
 
-const ans = useContext(UserContextData)
-// console.log(ans);
+  const ans = useContext(UserContextData)
+  // console.log(ans);
   return (
     <div>
       <Routes>
@@ -21,7 +23,9 @@ const ans = useContext(UserContextData)
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/captian-login" element={<CaptianLogin />} />
         <Route path="/captian-signup" element={<CaptianSignup />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<UserProtectedWraper><Home /></UserProtectedWraper>} />
+        <Route path='/user/logout' element={<UserProtectedWraper><UserLogut /></UserProtectedWraper>} />
+        
       </Routes>
     </div>
   )
