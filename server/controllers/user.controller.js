@@ -12,9 +12,9 @@ module.exports.registerUser = async (req, res, next) => {
     }
 
     const { fullname, email, password } = req.body;
-    const isUserAlreadyExixts= await userModel.findOne({email});
-    if(isUserAlreadyExixts){
-        return res.status(400).json({message:"User already exits"})
+    const isUserAlreadyExixts = await userModel.findOne({ email });
+    if (isUserAlreadyExixts) {
+        return res.status(400).json({ message: "User already exits" })
     }
     const hashPassword = await userModel.hashPassword(password)
 
@@ -34,7 +34,7 @@ module.exports.loginUser = async (req, res, next) => {
         return res.status(400).json({ errors: errors.array() })
     }
     const { email, password } = req.body;
-    
+
     const user = await userModel.findOne({ email }).select('+password');
     if (!user) {
         return res.status(401).json({ message: "Invalid email or password" })
@@ -55,8 +55,13 @@ module.exports.getUserProfile = async (req, res) => {
 module.exports.logoutUser = async (req, res, next) => {
     res.clearCookie('token')
     const token = req.cookies.token || req.headers.authorization.split(" ")[1];
-    await blacklistTokenModel.create({ token });
+    // console.log(token  ,"checking token in logout");
+
+    const exists = await blacklistTokenModel.findOne({ token });
+    if (!exists) {
+        await blacklistTokenModel.create({ token });
+    }
     res.status(200).json({ message: "Logged out" });
 }
 
- 
+
