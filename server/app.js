@@ -3,12 +3,16 @@ dotenv.config();
 
 const express = require("express")
 const app = express();
+const cors = require('cors')
+
+app.use(cors({
+    origin: 'http://localhost:5173', // your frontend URL
+    credentials: true
+}));
 
 const cookieParser= require('cookie-parser')
-
-const cors = require('cors')
-app.use(cors())
 app.use(cookieParser())
+
 
 
 const db = require("./database/db")
@@ -27,4 +31,4 @@ app.get("/", (req, res) => {
 app.use("/users", userRoutes);
 app.use('/captains', captainRoutes)
 
-module.exports = app; 
+module.exports = app;
