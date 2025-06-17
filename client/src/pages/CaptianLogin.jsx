@@ -20,7 +20,7 @@ const CaptianLogin = () => {
     const response =await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/login`, captain)
     if (response.status === 200) {
       const data = response.data;
-      console.log("data", data.captian);
+      // console.log("data", data.captian);
       setCaptain(data.captian);
       
       localStorage.setItem('token', data.token);
